@@ -10,3 +10,5 @@ add_library(core
 )
 
 target_include_directories(core PUBLIC src)
+add_executable(smoke src/experiments/smoke.cpp)
+target_link_libraries(smoke PRIVATE core)
