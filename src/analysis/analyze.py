@@ -12,14 +12,17 @@ def main():
 
     import matplotlib.pyplot as plt
     from pathlib import Path
+
     Path("report/figures").mkdir(parents=True, exist_ok=True)
 
     run = pd.read_csv(args.run)
+
     plt.figure()
-    plt.plot(run["processed_fraction"], run["true_F0"])
-    plt.plot(run["processed_fraction"], run["estimate_Nt"])
+    plt.plot(run["processed_fraction"], run["true_F0"], label="F0 (true)")
+    plt.plot(run["processed_fraction"], run["estimate_Nt"], label="Nt (HLL)")
     plt.xlabel("processed_fraction")
     plt.ylabel("unique_count")
+    plt.legend()
     plt.tight_layout()
     plt.savefig(args.out1, dpi=200)
     plt.close()
@@ -30,10 +33,11 @@ def main():
     s = summ["sigma_estimate_Nt"].to_numpy()
 
     plt.figure()
-    plt.plot(x, m)
-    plt.fill_between(x, m - s, m + s, alpha=0.25)
+    plt.plot(x, m, label="E(Nt)")
+    plt.fill_between(x, m - s, m + s, alpha=0.25, label="± sigma")
     plt.xlabel("processed_fraction")
     plt.ylabel("estimate_stats")
+    plt.legend()
     plt.tight_layout()
     plt.savefig(args.out2, dpi=200)
     plt.close()
