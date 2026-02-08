@@ -1,0 +1,14 @@
+build/
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dylib
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+report/figures/*.png
